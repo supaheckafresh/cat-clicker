@@ -1,55 +1,57 @@
-
-//var cats = [
-//    { name: 'Sally', imgUrl: 'images/pants-cat.jpg', id: 'cat' + 1},
-//    { name: 'Frank', imgUrl: 'images/paper-cat.jpg', id: 'cat' + 2}
-//];
-
-
-var catsDiv = $('#cats');
-
-var cat1Div = $('#cat1');
-var cat1Name = 'Sally';
-
-var cat2Div = $('#cat2');
-var cat2Name = 'Frank';
-
-// initialize points at 0
-var cat1Points = 0;
-var cat2Points = 0;
-
-// display cat names above pictures
-prepend('h2', cat1Name, cat1Div);
-prepend('h2', cat2Name, cat2Div);
-
-// display cat points below pictures
-append('h2', 'Points: ' + cat1Points, cat1Div);
-append('h2', 'Points: ' + cat2Points, cat2Div);
+/**
+ * List of cats
+ */
+var cats = [
+    { name: 'Sally', imgUrl: 'images/pants-cat.jpg', id: 'cat' + 1, points: 0},
+    { name: 'Frank', imgUrl: 'images/paper-cat.jpg', id: 'cat' + 2, points: 0},
+    { name: 'Brenard', imgUrl: 'images/box-cat.jpg', id: 'cat' + 3, points: 0},
+    { name: 'Jennifer', imgUrl: 'images/luggage-cat.jpg', id: 'cat' + 4, points: 0},
+    { name: 'Logan', imgUrl: 'images/hat-cat.jpg', id: 'cat' + 5, points: 0}
+];
 
 
-// click listener for counting points when catDiv picture is clicked with mouse
-var catImage;
+/**
+ * Display cat image, name and points for each cat in the list
+ */
+for (var i = 0, length = cats.length; i < length; i++ ) {
+    var cat = cats[i];
+    var currentRow;
 
-catsDiv.click( function updatePoints( evt ) {
+    // create new row for each set of 3 cats including first row
+    if (i % 3 === 0) {
+        currentRow = 'r' + (i / 3);
+        $('<div/>', {class: 'row ' + currentRow}).appendTo('#cats');
+    }
+
+    // append containing div for each cat
+    $('<div/>', {id: cat.id, class: 'col-xs-4'}).appendTo('.' + currentRow);
+
+    // display cat name
+    $('<h3/>').text(cat.name).appendTo('#' + cat.id);
+
+    // display cat image inside of div
+    $('<img/>', {src: cat.imgUrl, class: 'img-responsive'}).appendTo('#' + cat.id);
+
+    // display points
+    $('<h3/>').text("Points: " + cat.points).appendTo('#' + cat.id);
+}
+
+
+/**
+ * Click listener for counting points when catDiv picture is clicked with mouse
+ */
+$('#cats').click( function updatePoints( evt ) {
 
     if (evt.target.tagName.toLowerCase() === 'img') {
-        catImage = evt.target;
-        if (catImage.parentNode.id === 'cat1') {
-            cat1Points += 1;
-            cat1Div.children(':last').replaceWith('<h2>Points: ' + cat1Points + '</h2>');
-        } else if (catImage.parentNode.id === 'cat2') {
-            cat2Points += 1;
-            cat2Div.children(':last').replaceWith('<h2>Points: ' + cat2Points + '</h2>');
-        } else {
-            console.log('something is broken');
-        }
+
+        // translate div id (format "cat1", "cat2", etc.) into index of cat in "cats" list (0 based).
+        var catIndex = evt.target.parentNode.id.slice(3) - 1;
+        var cat = cats[catIndex];
+
+        // increase points for that cat when clicked with mouse
+        cat.points += 1;
+
+        // display updated points by replacing the next sibling of the cat image
+        $(evt.target).next().replaceWith('<h3>Points: ' + cat.points + '</h3>');
     }
 });
-
-// helpers
-function prepend(newElement, text, parentElement) {
-    parentElement.prepend('<' + newElement + '>' + text + '</' + newElement + '>');
-}
-
-function append(newElement, text, parentElement) {
-    parentElement.append('<' + newElement + '>' + text + '</' + newElement + '>');
-}
