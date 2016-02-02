@@ -49,7 +49,7 @@ function displayCats() {
         $('<h3/>').text(cat.name).appendTo('#' + cat.id);
 
         // display cat image inside of div
-        $('<img/>', {src: cat.imgUrl, class: 'img-responsive'}).appendTo('#' + cat.id);
+        $('<img/>', {src: cat.imgUrl, class: 'cat-img img-responsive'}).appendTo('#' + cat.id);
 
         // display points
         $('<h3/>').text("Points: " + cat.points).appendTo('#' + cat.id);
@@ -60,22 +60,18 @@ function displayCats() {
 /**
  * Click listener for counting points when catDiv picture is clicked with mouse
  */
-$('#cats').click( function updatePoints( evt ) {
+$('#cats').on('click', '.cat-img', function updatePoints( evt ) {
 
-    // only do anything if image is selected
-    if (evt.target.tagName.toLowerCase() === 'img') {
+    // translate div id (format "cat1", "cat2", etc.) into index of cat in "cats" list (0 based).
+    var catIndex = evt.target.parentNode.id.slice(3) - 1;
+    var cat = cats.cats[catIndex];
 
-        // translate div id (format "cat1", "cat2", etc.) into index of cat in "cats" list (0 based).
-        var catIndex = evt.target.parentNode.id.slice(3) - 1;
-        var cat = cats.cats[catIndex];
+    // store the id of the last cat clicked on
+    cats.lastClicked = cats.cats[catIndex].id;
 
-        // store the id of the last cat clicked on
-        cats.lastClicked = cats.cats[catIndex].id;
+    // increase points for that cat when clicked with mouse
+    cat.points += 1;
 
-        // increase points for that cat when clicked with mouse
-        cat.points += 1;
-
-        // display updated points by replacing the next sibling of the cat image
-        $(evt.target).next('h3').replaceWith('<h3>Points: ' + cat.points + '</h3>');
-    }
+    // display updated points by replacing the next sibling of the cat image
+    $(evt.target).next('h3').replaceWith('<h3>Points: ' + cat.points + '</h3>');
 });
