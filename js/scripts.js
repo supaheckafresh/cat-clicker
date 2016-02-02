@@ -29,7 +29,7 @@ $(function(){
         },
 
         getAllCats: function () {
-            return JSON.parse(localStorage.cats);
+            return JSON.parse(localStorage.cats).cats;
         }
     };
 
@@ -48,14 +48,24 @@ $(function(){
 
 
     var view = {
+
         init: function () {
+            view.displayCatsList();
+        },
+
+        displayCatsList: function () {
+            this.catsList = $('#cats-list');
             var cats = octopus.getCats();
-            console.log(cats);
+
+            for (var i = 0, len = cats.length; i < len; i++) {
+                this.catsList.append('<li>' + cats[i].name + '</li>');
+            }
+
         }
+
     };
 
     octopus.init();
-
 });
 
 
