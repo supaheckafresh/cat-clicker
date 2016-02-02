@@ -63,7 +63,7 @@ function displayCats() {
 $('#cats').on('click', '.cat-img', function updatePoints( evt ) {
 
     // translate div id (format "cat1", "cat2", etc.) into index of cat in "cats" list (0 based).
-    var catIndex = evt.target.parentNode.id.slice(3) - 1;
+    var catIndex = $(this).closest('div').attr('id').slice(3) - 1;
     var cat = cats.cats[catIndex];
 
     // store the id of the last cat clicked on
