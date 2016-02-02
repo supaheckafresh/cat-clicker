@@ -30,6 +30,10 @@ $(function(){
 
         getAllCats: function () {
             return JSON.parse(localStorage.cats).cats;
+        },
+
+        getOneCat: function (catId) {
+            return JSON.parse(localStorage.cats).cats[catId - 1];
         }
     };
 
@@ -43,6 +47,10 @@ $(function(){
 
         getCats: function () {
             return model.getAllCats();
+        },
+
+        findCat: function (catId) {
+            return model.getOneCat(catId);
         }
     };
 
@@ -52,12 +60,22 @@ $(function(){
         init: function () {
             this.catsList = $('#cats-list');
             view.displayCatsList();
+
+            this.catsList.on('click', '.cat', function ( evt ) {
+                var catId = evt.target.id;
+                console.log(catId);
+                console.log(octopus.findCat(catId));
+            })
         },
 
         displayCatsList: function () {
             var htmlStr = '';
             octopus.getCats().forEach(function (cat) {
-                htmlStr += '<li>' + cat.name + '</li>';
+                htmlStr += '<li>' +
+                    '           <a class="cat" id="' + cat.id + '">' +
+                                    cat.name + '' +
+                    '           </a>' +
+                    '       </li>';
             });
             this.catsList.html(htmlStr);
         }
