@@ -73,5 +73,5 @@ $('#cats').on('click', '.cat-img', function updatePoints( evt ) {
     cat.points += 1;
 
     // display updated points by replacing the next sibling of the cat image
-    $(evt.target).next('h3').replaceWith('<h3>Points: ' + cat.points + '</h3>');
+    $(this).next('h3').replaceWith('<h3>Points: ' + cat.points + '</h3>');
 });
