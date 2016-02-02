@@ -50,17 +50,16 @@ $(function(){
     var view = {
 
         init: function () {
+            this.catsList = $('#cats-list');
             view.displayCatsList();
         },
 
         displayCatsList: function () {
-            this.catsList = $('#cats-list');
-            var cats = octopus.getCats();
-
-            for (var i = 0, len = cats.length; i < len; i++) {
-                this.catsList.append('<li>' + cats[i].name + '</li>');
-            }
-
+            var htmlStr = '';
+            octopus.getCats().forEach(function (cat) {
+                htmlStr += '<li>' + cat.name + '</li>';
+            });
+            this.catsList.html(htmlStr);
         }
 
     };
