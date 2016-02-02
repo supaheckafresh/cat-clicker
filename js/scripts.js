@@ -1,16 +1,23 @@
 /**
  * List of cats
  */
-var cats = [
-    { name: 'Sally', imgUrl: 'images/pants-cat.jpg', id: 'cat' + 1, points: 0},
-    { name: 'Frank', imgUrl: 'images/paper-cat.jpg', id: 'cat' + 2, points: 0},
-    { name: 'Brenard', imgUrl: 'images/box-cat.jpg', id: 'cat' + 3, points: 0},
-    { name: 'Jennifer', imgUrl: 'images/luggage-cat.jpg', id: 'cat' + 4, points: 0},
-    { name: 'Logan', imgUrl: 'images/hat-cat.jpg', id: 'cat' + 5, points: 0},
-    { name: 'Grover', imgUrl: 'images/box-cat.jpg', id: 'cat' + 6, points: 0},
-    { name: 'Licky', imgUrl: 'images/luggage-cat.jpg', id: 'cat' + 7, points: 0},
-    { name: 'Mexico', imgUrl: 'images/hat-cat.jpg', id: 'cat' + 8, points: 0}
-];
+var cats = {
+        lastClicked: null,
+        cats: [
+            { name: 'Sally', imgUrl: 'images/pants-cat.jpg', points: 0},
+            { name: 'Frank', imgUrl: 'images/paper-cat.jpg', points: 0},
+            { name: 'Brenard', imgUrl: 'images/box-cat.jpg', points: 0},
+            { name: 'Jennifer', imgUrl: 'images/luggage-cat.jpg', points: 0},
+            { name: 'Logan', imgUrl: 'images/hat-cat.jpg', points: 0},
+            { name: 'Grover', imgUrl: 'images/box-cat.jpg', points: 0},
+            { name: 'Licky', imgUrl: 'images/luggage-cat.jpg', points: 0},
+            { name: 'Mexico', imgUrl: 'images/hat-cat.jpg', points: 0}
+        ]
+    };
+
+for (var i = 0, len = cats.cats.length; i < len; i++) {
+    cats.cats[i].id = 'cat' + (i + 1);
+}
 
 // call display cats function on page load
 displayCats();
@@ -25,8 +32,8 @@ function displayCats() {
     $('#cats').empty();
 
     // go through list creating and displaying needed elements
-    for (var i = 0, length = cats.length; i < length; i++ ) {
-        var cat = cats[i];
+    for (var i = 0, length = cats.cats.length; i < length; i++ ) {
+        var cat = cats.cats[i];
         var currentRow;
 
         // create new row for each set of 3 cats including first row
@@ -60,7 +67,10 @@ $('#cats').click( function updatePoints( evt ) {
 
         // translate div id (format "cat1", "cat2", etc.) into index of cat in "cats" list (0 based).
         var catIndex = evt.target.parentNode.id.slice(3) - 1;
-        var cat = cats[catIndex];
+        var cat = cats.cats[catIndex];
+
+        // store the id of the last cat clicked on
+        cats.lastClicked = cats.cats[catIndex].id;
 
         // increase points for that cat when clicked with mouse
         cat.points += 1;
