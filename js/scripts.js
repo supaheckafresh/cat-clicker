@@ -28,13 +28,29 @@ $(function(){
             }
         },
 
+        getAllAppData: function () {
+            return JSON.parse(localStorage.cats);
+        },
+
         getAllCats: function () {
             return JSON.parse(localStorage.cats).cats;
         },
 
         getOneCat: function (catId) {
             return JSON.parse(localStorage.cats).cats[catId - 1];
+        },
+
+        addPointFor: function (catId) {
+            var data = this.getAllAppData();
+            var catIndex = catId - 1;
+            data.cats[catIndex].points += 1;
+            this.save(data);
+        },
+
+        save: function (data) {
+            localStorage.cats = JSON.stringify(data);
         }
+
     };
 
 
@@ -51,6 +67,11 @@ $(function(){
 
         findCat: function (catId) {
             return model.getOneCat(catId);
+        },
+
+        addPointFor: function (catId) {
+            model.addPointFor(catId);
+            view.displayCat(catId);
         }
     };
 
@@ -62,10 +83,17 @@ $(function(){
             this.catImageView = $('#selected-cat')
             view.displayCatsList();
 
-            this.catsListView.on('click', '.cat', function ( evt ) {
-                var catId = evt.target.id;
+            // click listener for displaying cat picture when selected from list
+            this.catsListView.on('click', '.cat', function () {
+                var catId = $(this).attr('id');
                 view.displayCat(catId);
-            })
+            });
+
+            // click listener for adding points when cat picture is clicked on
+            this.catImageView.on('click', '.cat-img', function ()  {
+                var catId = $(this).attr('rel');
+                octopus.addPointFor(catId);
+            });
         },
 
         displayCatsList: function () {
@@ -85,9 +113,8 @@ $(function(){
             var cat = octopus.findCat(catId);
 
             // display cat image
-            var imgUrl = cat.imgUrl;
-            console.log(this.catImageView);
-            this.catImageView.html('<img src="' + imgUrl + '" class="img-responsive">');
+            this.catImageView.html('<img src="' + cat.imgUrl + '" class="cat-img img-responsive" ' +
+                                        'rel="' + cat.id + '">');
 
             // display name of cat
             this.catImageView.prepend('<h3>' + cat.name + '</h3>');
