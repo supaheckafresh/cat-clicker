@@ -11,7 +11,7 @@ $(function(){
                     {
                         lastClicked: null,
 
-                        // will use last id if implementing add new cat feature
+                        // will use last id if implementing add new cat feature, or possibly for reloading page last cat
                         lastId: 8,
                         cats: [
                             { name: 'Sally', imgUrl: 'images/pants-cat.jpg', points: 0, id: 1},
