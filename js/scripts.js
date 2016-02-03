@@ -58,13 +58,14 @@ $(function(){
     var view = {
 
         init: function () {
-            this.catsList = $('#cats-list');
+            this.catsListView = $('#cats-list');
+            this.catImageView = $('#selected-cat')
             view.displayCatsList();
 
-            this.catsList.on('click', '.cat', function ( evt ) {
+            this.catsListView.on('click', '.cat', function ( evt ) {
                 var catId = evt.target.id;
-                console.log(catId);
-                console.log(octopus.findCat(catId));
+                var imgUrl = octopus.findCat(catId).imgUrl;
+                view.displayCatImage(imgUrl);
             })
         },
 
@@ -77,12 +78,17 @@ $(function(){
                     '           </a>' +
                     '       </li>';
             });
-            this.catsList.html(htmlStr);
+            this.catsListView.html(htmlStr);
+        },
+
+        displayCatImage: function (imgUrl) {
+            this.catImageView.html('<img src="' + imgUrl + '" class="img-responsive">');
         }
 
     };
 
     octopus.init();
+
 });
 
 
