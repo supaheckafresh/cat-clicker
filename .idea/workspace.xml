@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a6d9593d-a1a5-41dd-ae86-57d2a0f67b4e" name="Default" comment="Assign IDs to cats and add last clicked">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/scripts.js" afterPath="$PROJECT_DIR$/js/scripts.js" />
     </list>
     <ignored path="cat-clicker.iws" />
@@ -47,11 +46,11 @@
       <file leaf-file-name="scripts.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/scripts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7435345">
-              <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.18857759">
+              <caret line="61" column="50" selection-start-line="61" selection-start-column="50" selection-end-line="61" selection-end-column="50" />
               <folding>
-                <marker date="1454458221500" expanded="true" signature="2362:2562" placeholder="..." />
-                <marker date="1454458221500" expanded="true" signature="2433:2525" placeholder="..." />
+                <marker date="1454458746075" expanded="true" signature="2296:2496" placeholder="..." />
+                <marker date="1454458746075" expanded="true" signature="2367:2459" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -311,8 +310,8 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1454458221500" expanded="true" signature="2362:2562" placeholder="..." />
-            <marker date="1454458221500" expanded="true" signature="2433:2525" placeholder="..." />
+            <marker date="1454458746075" expanded="true" signature="2296:2496" placeholder="..." />
+            <marker date="1454458746075" expanded="true" signature="2367:2459" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -342,11 +341,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/scripts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7435345">
-          <caret line="86" column="0" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.18857759">
+          <caret line="61" column="50" selection-start-line="61" selection-start-column="50" selection-end-line="61" selection-end-column="50" />
           <folding>
-            <marker date="1454458221500" expanded="true" signature="2362:2562" placeholder="..." />
-            <marker date="1454458221500" expanded="true" signature="2433:2525" placeholder="..." />
+            <marker date="1454458746075" expanded="true" signature="2296:2496" placeholder="..." />
+            <marker date="1454458746075" expanded="true" signature="2367:2459" placeholder="..." />
           </folding>
         </state>
       </provider>

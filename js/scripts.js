@@ -64,8 +64,7 @@ $(function(){
 
             this.catsListView.on('click', '.cat', function ( evt ) {
                 var catId = evt.target.id;
-                var imgUrl = octopus.findCat(catId).imgUrl;
-                view.displayCatImage(imgUrl);
+                view.displayCat(catId);
             })
         },
 
@@ -81,8 +80,20 @@ $(function(){
             this.catsListView.html(htmlStr);
         },
 
-        displayCatImage: function (imgUrl) {
+        displayCat: function (catId) {
+
+            var cat = octopus.findCat(catId);
+
+            // display cat image
+            var imgUrl = cat.imgUrl;
+            console.log(this.catImageView);
             this.catImageView.html('<img src="' + imgUrl + '" class="img-responsive">');
+
+            // display name of cat
+            this.catImageView.prepend('<h3>' + cat.name + '</h3>');
+
+            // display number of cat clicks (points)
+            this.catImageView.append('<h3>Points: ' + cat.points + '</h3>');
         }
 
     };
