@@ -9,7 +9,7 @@ $(function(){
             if ( !localStorage.cats ) {
                 localStorage.cats = JSON.stringify(
                     {
-                        lastClicked: null,
+                        lastClicked: 1,
 
                         // will use last id if implementing add new cat feature, or possibly for reloading page last cat
                         lastId: 8,
@@ -49,6 +49,17 @@ $(function(){
 
         save: function (data) {
             localStorage.cats = JSON.stringify(data);
+        },
+
+        setLastCat: function (catId) {
+            var data = this.getAllAppData();
+            data.lastClicked = catId;
+            this.save(data);
+        },
+
+        getLastCat: function () {
+            return JSON.parse(localStorage.cats).lastClicked;
+
         }
 
     };
@@ -72,6 +83,14 @@ $(function(){
         addPointFor: function (catId) {
             model.addPointFor(catId);
             view.displayCatView(catId);
+        },
+
+        lastCat: function () {
+            return model.getLastCat();
+        },
+
+        rememberLastCat: function (catId) {
+            model.setLastCat(catId);
         }
     };
 
@@ -81,12 +100,20 @@ $(function(){
         init: function () {
             this.catsListView = $('#cats-list');
             this.catImageView = $('#selected-cat');
+
+            // display list of cats by name
             view.displayCatsListView();
+
+            // display last clicked cat in cat view on page load
+
+            view.displayCatView(octopus.lastCat());
 
             // click listener for displaying cat picture when selected from list
             this.catsListView.on('click', '.cat', function () {
                 var catId = $(this).attr('id');
                 view.displayCatView(catId);
+
+                octopus.rememberLastCat(catId);
             });
 
             // click listener for adding points when cat picture is clicked on

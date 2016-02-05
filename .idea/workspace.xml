@@ -46,11 +46,12 @@
       <file leaf-file-name="scripts.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/scripts.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.66702586">
-              <caret line="110" column="14" selection-start-line="110" selection-start-column="14" selection-end-line="110" selection-end-column="14" />
+            <state vertical-scroll-proportion="0.44504312">
+              <caret line="93" column="9" selection-start-line="93" selection-start-column="9" selection-end-line="93" selection-end-column="9" />
               <folding>
-                <marker date="1454630570581" expanded="true" signature="3227:3427" placeholder="..." />
-                <marker date="1454630570581" expanded="true" signature="3298:3390" placeholder="..." />
+                <marker date="1454631971239" expanded="true" signature="3100:3151" placeholder="..." />
+                <marker date="1454631971239" expanded="true" signature="3884:4084" placeholder="..." />
+                <marker date="1454631971239" expanded="true" signature="3955:4047" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -261,6 +262,7 @@
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2484375" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -273,7 +275,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3294979" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -310,8 +311,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1454630570581" expanded="true" signature="3227:3427" placeholder="..." />
-            <marker date="1454630570581" expanded="true" signature="3298:3390" placeholder="..." />
+            <marker date="1454631971239" expanded="true" signature="3100:3151" placeholder="..." />
+            <marker date="1454631971239" expanded="true" signature="3884:4084" placeholder="..." />
+            <marker date="1454631971239" expanded="true" signature="3955:4047" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -337,8 +339,9 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1454630570581" expanded="true" signature="3227:3427" placeholder="..." />
-            <marker date="1454630570581" expanded="true" signature="3298:3390" placeholder="..." />
+            <marker date="1454631971239" expanded="true" signature="3100:3151" placeholder="..." />
+            <marker date="1454631971239" expanded="true" signature="3884:4084" placeholder="..." />
+            <marker date="1454631971239" expanded="true" signature="3955:4047" placeholder="..." />
           </folding>
         </state>
       </provider>
@@ -368,11 +371,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/scripts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66702586">
-          <caret line="110" column="14" selection-start-line="110" selection-start-column="14" selection-end-line="110" selection-end-column="14" />
+        <state vertical-scroll-proportion="0.44504312">
+          <caret line="93" column="9" selection-start-line="93" selection-start-column="9" selection-end-line="93" selection-end-column="9" />
           <folding>
-            <marker date="1454630570581" expanded="true" signature="3227:3427" placeholder="..." />
-            <marker date="1454630570581" expanded="true" signature="3298:3390" placeholder="..." />
+            <marker date="1454631971239" expanded="true" signature="3100:3151" placeholder="..." />
+            <marker date="1454631971239" expanded="true" signature="3884:4084" placeholder="..." />
+            <marker date="1454631971239" expanded="true" signature="3955:4047" placeholder="..." />
           </folding>
         </state>
       </provider>
