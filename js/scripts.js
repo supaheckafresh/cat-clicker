@@ -80,7 +80,7 @@ $(function(){
 
         init: function () {
             this.catsListView = $('#cats-list');
-            this.catImageView = $('#selected-cat')
+            this.catImageView = $('#selected-cat');
             view.displayCatsList();
 
             // click listener for displaying cat picture when selected from list
