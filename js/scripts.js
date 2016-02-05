@@ -71,7 +71,7 @@ $(function(){
 
         addPointFor: function (catId) {
             model.addPointFor(catId);
-            view.displayCat(catId);
+            view.displayCatView(catId);
         }
     };
 
@@ -81,12 +81,12 @@ $(function(){
         init: function () {
             this.catsListView = $('#cats-list');
             this.catImageView = $('#selected-cat');
-            view.displayCatsList();
+            view.displayCatsListView();
 
             // click listener for displaying cat picture when selected from list
             this.catsListView.on('click', '.cat', function () {
                 var catId = $(this).attr('id');
-                view.displayCat(catId);
+                view.displayCatView(catId);
             });
 
             // click listener for adding points when cat picture is clicked on
@@ -96,7 +96,7 @@ $(function(){
             });
         },
 
-        displayCatsList: function () {
+        displayCatsListView: function () {
             var htmlStr = '';
             octopus.getCats().forEach(function (cat) {
                 htmlStr += '<li>' +
@@ -108,7 +108,7 @@ $(function(){
             this.catsListView.html(htmlStr);
         },
 
-        displayCat: function (catId) {
+        displayCatView: function (catId) {
 
             var cat = octopus.findCat(catId);
 
