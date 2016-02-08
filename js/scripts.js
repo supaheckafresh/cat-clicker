@@ -49,7 +49,7 @@ $(function(){
         addPointFor: function (catId) {
             var data = this.getAllAppData();
             var catIndex = catId - 1;
-            data.cats[catIndex].points += 1;
+            data.cats[catIndex].points = parseInt(++data.cats[catIndex].points);
             this.save(data);
         },
 
@@ -114,9 +114,11 @@ $(function(){
             view.displayCatView(catId);
         },
 
-        updateCats: function (cats) {
+        updateCat: function (cat) {
             var data = model.getAllAppData();
-            data.cats = cats;
+
+            // update cat record with new information
+            data.cats[cat.id - 1] = cat;
             model.save(data);
         },
 
@@ -246,12 +248,12 @@ $(function(){
                     var newPoints = adminForm.find('input[name="points"]').val();
                     var newImgUrl = adminForm.find('input[name="img-url"]').val();
 
-                    var cats = octopus.getCats();
-                    cats[octopus.lastCat() - 1].name = newName;
-                    cats[octopus.lastCat() - 1].points = newPoints;
-                    cats[octopus.lastCat() - 1].imgUrl = newImgUrl;
+                    var cat = octopus.findCat(octopus.lastCat());
+                    cat.name = newName;
+                    cat.points = newPoints;
+                    cat.imgUrl = newImgUrl;
 
-                    octopus.updateCats(cats);
+                    octopus.updateCat(cat);
                 });
 
             } else {
