@@ -114,6 +114,12 @@ $(function(){
             view.displayCatView(catId);
         },
 
+        updateCats: function (cats) {
+            var data = model.getAllAppData();
+            data.cats = cats;
+            model.save(data);
+        },
+
         lastCat: function () {
             return model.getLastCat();
         },
@@ -155,9 +161,9 @@ $(function(){
             // click listener for displaying cat picture when selected from list
             this.catsListView.on('click', '.cat', function () {
 
-                // disable admin view whenever switching cats
+                // disable admin mode and hide admin view whenever switching cats
                 octopus.disableAdminView();
-                octopus.refreshAdminView();
+                adminView.render();
 
                 var catId = $(this).attr('id');
                 view.displayCatView(catId);
@@ -220,14 +226,34 @@ $(function(){
                 this.adminForm.append('<h3>Edit Current Cat</h3>');
 
                 // append inputs to admin div with info from current cat
-                this.adminForm.append('<div class="col-xs-3">' +
-                    'Name: <input type="text" value="' + currentCat.name + '"></div>');
+                this.adminForm.append('<span class="col-xs-3 text-right">Name: </span><input name="name" ' +
+                                        'class="col-xs-9" type="text" value="' + currentCat.name + '">');
 
-                this.adminForm.append('<div class="col-xs-3">' +
-                    'Points: <input type="number" value="' + currentCat.points + '"></div>');
+                this.adminForm.append('<span class="col-xs-3 text-right">Points: </span><input name="points" ' +
+                                        'class="col-xs-9" type="number" value="' + currentCat.points + '">');
 
-                this.adminForm.append('<div class="col-xs-3">' +
-                    'Image URL: <input type="text" value="' + currentCat.imgUrl + '"></div>');
+                this.adminForm.append('<span class="col-xs-3 text-right">Image URL: </span><input name="img-url" ' +
+                                        'class="col-xs-9" type="text" value="' + currentCat.imgUrl + '">');
+
+
+                this.adminForm.append('<button type="submit" id="save-btn">Save</button>');
+                this.adminForm.append('<button type="submit" id="cancel-btn">Cancel</button>');
+
+                // add click listener for save button
+                this.adminForm.on('click', '#save-btn', function () {
+                    var adminForm = $('#admin-form');
+                    var newName = adminForm.find('input[name="name"]').val();
+                    var newPoints = adminForm.find('input[name="points"]').val();
+                    var newImgUrl = adminForm.find('input[name="img-url"]').val();
+
+                    var cats = octopus.getCats();
+                    cats[octopus.lastCat() - 1].name = newName;
+                    cats[octopus.lastCat() - 1].points = newPoints;
+                    cats[octopus.lastCat() - 1].imgUrl = newImgUrl;
+
+                    octopus.updateCats(cats);
+                });
+
             } else {
                 this.adminForm.html('');
             }
