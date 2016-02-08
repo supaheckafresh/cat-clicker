@@ -9,7 +9,11 @@ $(function(){
             if ( !localStorage.cats ) {
                 localStorage.cats = JSON.stringify(
                     {
+                        // set first cat as lastClicked if program being run for first time.
                         lastClicked: 1,
+
+                        // don't show admin view on when application is first run
+                        adminModeActive: false,
 
                         // will use last id if implementing add new cat feature, or possibly for reloading page last cat
                         lastId: 8,
@@ -26,6 +30,8 @@ $(function(){
                     }
                 )
             }
+
+            this.disableAdminMode();
         },
 
         getAllAppData: function () {
@@ -51,7 +57,7 @@ $(function(){
             localStorage.cats = JSON.stringify(data);
         },
 
-        setLastCat: function (catId) {
+        setCurrentCat: function (catId) {
             var data = this.getAllAppData();
             data.lastClicked = catId;
             this.save(data);
@@ -60,6 +66,28 @@ $(function(){
         getLastCat: function () {
             return JSON.parse(localStorage.cats).lastClicked;
 
+        },
+
+        getAdminState: function () {
+            return model.getAllAppData().adminModeActive;
+        },
+
+        toggleAdminMode: function () {
+            var data = model.getAllAppData();
+
+            // flip value of adminModeActive
+            data.adminModeActive = !data.adminModeActive;
+            this.save(data);
+
+            octopus.refreshAdminView();
+        },
+
+        disableAdminMode: function () {
+            var data = this.getAllAppData();
+            if (data.adminModeActive) {
+                data.adminModeActive = false;
+            }
+            this.save(data);
         }
 
     };
@@ -70,6 +98,7 @@ $(function(){
         init: function () {
             model.init();
             view.init();
+            adminView.init();
         },
 
         getCats: function () {
@@ -89,8 +118,24 @@ $(function(){
             return model.getLastCat();
         },
 
-        rememberLastCat: function (catId) {
-            model.setLastCat(catId);
+        setCurrentCat: function (catId) {
+            model.setCurrentCat(catId);
+        },
+
+        getAdminState: function () {
+            return model.getAdminState();
+        },
+
+        toggleAdminMode: function () {
+            model.toggleAdminMode();
+        },
+
+        disableAdminView: function () {
+            model.disableAdminMode();
+        },
+
+        refreshAdminView: function () {
+            adminView.render();
         }
     };
 
@@ -98,22 +143,26 @@ $(function(){
     var view = {
 
         init: function () {
-            this.catsListView = $('#cats-list');
-            this.catImageView = $('#selected-cat');
+            this.catsListView = $('#cats-list-view');
+            this.catImageView = $('#selected-cat-view');
 
             // display list of cats by name
             view.displayCatsListView();
 
             // display last clicked cat in cat view on page load
-
             view.displayCatView(octopus.lastCat());
 
             // click listener for displaying cat picture when selected from list
             this.catsListView.on('click', '.cat', function () {
+
+                // disable admin view whenever switching cats
+                octopus.disableAdminView();
+                octopus.refreshAdminView();
+
                 var catId = $(this).attr('id');
                 view.displayCatView(catId);
 
-                octopus.rememberLastCat(catId);
+                octopus.setCurrentCat(catId);
             });
 
             // click listener for adding points when cat picture is clicked on
@@ -152,7 +201,43 @@ $(function(){
 
     };
 
+    var adminView = {
+
+        init: function () {
+            this.adminForm = $('#admin-form');
+            this.toggleAdminBtn = $('#toggle-admin-btn');
+
+            this.toggleAdminBtn.on('click', function () {
+                octopus.toggleAdminMode();
+            });
+        },
+
+        render: function () {
+            if (octopus.getAdminState() === true) {
+
+                var currentCat = octopus.findCat( octopus.lastCat() );
+
+                this.adminForm.append('<h3>Edit Current Cat</h3>');
+
+                // append inputs to admin div with info from current cat
+                this.adminForm.append('<div class="col-xs-3">' +
+                    'Name: <input type="text" value="' + currentCat.name + '"></div>');
+
+                this.adminForm.append('<div class="col-xs-3">' +
+                    'Points: <input type="number" value="' + currentCat.points + '"></div>');
+
+                this.adminForm.append('<div class="col-xs-3">' +
+                    'Image URL: <input type="text" value="' + currentCat.imgUrl + '"></div>');
+            } else {
+                this.adminForm.html('');
+            }
+        }
+
+
+    };
+
     octopus.init();
+
 
 });
 
