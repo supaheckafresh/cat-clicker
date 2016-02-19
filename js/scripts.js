@@ -117,7 +117,7 @@ $(function(){
         updateCat: function (cat) {
             var data = model.getAllAppData();
 
-            // update cat record with new information
+            // replace cat record with updated record
             data.cats[cat.id - 1] = cat;
             model.save(data);
         },
@@ -221,6 +221,8 @@ $(function(){
         },
 
         render: function () {
+
+            // display form only if admin mode is active
             if (octopus.getAdminState() === true) {
 
                 var currentCat = octopus.findCat( octopus.lastCat() );
@@ -256,6 +258,7 @@ $(function(){
                     octopus.updateCat(cat);
                 });
 
+            // hide form if admin mode is inactive
             } else {
                 this.adminForm.html('');
             }
